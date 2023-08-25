@@ -8,8 +8,8 @@ describe('Test imdb for Brite', () => {
         cy.visit('/')
       })
 
-      it.only('Get Nicholas Cage most recent completed movie', () => {
-        cy.get('#suggestion-search').type('Nicolas Cage').invoke('attr', 'placeholder').should('contain', 'Search IMDb')
+      it('Get Nicholas Cages most recent completed movie', () => {
+        cy.get('#suggestion-search').type('Nicolas Cage').invoke('attr', 'value').should('contain', 'Nicolas Cage')
         cy.get('#suggestion-search-button').click()
         cy.get('a').contains('Nicolas Cage').first().click()
         cy.contains('Upcoming').click()
@@ -29,7 +29,7 @@ describe('Test imdb for Brite', () => {
 
       })
 
-      it('Rate second item top box office with 5 stars', () => {
+      it.only('Rate second item top box office with 5 stars', () => {
         cy.contains('Menu').click()
         cy.contains('Top 250 TV Shows').click()
         cy.contains('Breaking Bad').click()
