@@ -1,10 +1,6 @@
 
 describe('Test imdb for Brite', () => {
     beforeEach(() => {
-        // Cypress starts out with a blank slate for each test
-        // so we must tell it to visit our website with the `cy.visit()` command.
-        // Since we want to visit the same URL at the start of all our tests,
-        // we include it in our beforeEach function so that it runs before each test
         cy.visit('/')
       })
 
@@ -33,7 +29,7 @@ describe('Test imdb for Brite', () => {
         cy.contains('Menu').click()
         cy.contains('Top 250 TV Shows').click()
         cy.contains('Breaking Bad').click()
-        cy.contains('h3','Photos').click()
+        cy.get('[data-testid="photos-title"]').find('a.ipc-title-link-wrapper').click()
         cy.contains('a', 'Danny Trejo').click()
         cy.get('#media_index_thumbnail_grid>a').eq(1).click()
       })
