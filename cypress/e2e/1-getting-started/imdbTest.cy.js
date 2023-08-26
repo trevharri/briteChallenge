@@ -1,12 +1,7 @@
-import { navMenu } from "../../support/page_objects/navMenu"
-import { searchResultsPage } from "../../support/page_objects/searchResultsPage"
-import { actorPage } from "../../support/page_objects/actorPage"
-import { topBoxOfficePage } from "../../support/page_objects/topBoxOfficePage"
-import { topTVShowsPage } from "../../support/page_objects/topTVShowsPage"
-import { showPage } from "../../support/page_objects/showPage"
-import { showGalleryPage } from "../../support/page_objects/showGalleryPage"
+import { navMenu, searchResultsPage, actorPage, topBoxOfficePage, topTVShowsPage, showPage, showGalleryPage } from "../../support/page_objects/index"
 
-describe('Test imdb for Brite', () => {
+describe('Test IMDb for Brite', () => {
+
     beforeEach(() => {
         cy.visit('/')
       })
@@ -31,6 +26,5 @@ describe('Test imdb for Brite', () => {
       showGalleryPage.filterPhotosByName('Danny Trejo')
       showGalleryPage.selectNthPhoto(2)
     })
-
 
 })
