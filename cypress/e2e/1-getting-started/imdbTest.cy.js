@@ -1,3 +1,10 @@
+import { navMenu } from "../../support/page_objects/navMenu"
+import { searchResultsPage } from "../../support/page_objects/searchResultsPage"
+import { actorPage } from "../../support/page_objects/actorPage"
+import { topBoxOfficePage } from "../../support/page_objects/topBoxOfficePage"
+import { topTVShowsPage } from "../../support/page_objects/topTVShowsPage"
+import { showPage } from "../../support/page_objects/showPage"
+import { showGalleryPage } from "../../support/page_objects/showGalleryPage"
 
 describe('Test imdb for Brite', () => {
     beforeEach(() => {
@@ -5,46 +12,24 @@ describe('Test imdb for Brite', () => {
       })
 
     it('Get Nicholas Cages most recent completed movie', () => {
-      cy.get('#suggestion-search')
-        .type('Nicolas Cage')
-        .invoke('attr', 'value')
-        .should('contain', 'Nicolas Cage')
-      cy.get('#suggestion-search-button').click()
-      cy.get('a').contains('Nicolas Cage').first().click()
-      cy.contains('Upcoming').click()
-      cy.contains('Completed').click({ force: true })
+      navMenu.searchFor('Nicolas Cage')
+      searchResultsPage.goToActorPage('Nicolas Cage')
+      actorPage.goToFirstUpcomingCompletedMovie()
     })
 
     it('Rate second item top box office with 5 stars', () => {
-      cy.contains('Menu').click()
-      cy.contains('Top Box Office').click()
-      cy.get('ul.ipc-metadata-list>li')
-        .eq(1)
-        .find('button[data-testid="rate-button"]')
-        .click()
-      cy.get('button[aria-label="Rate 5"]')
-        .click({ force: true })
-        .parents('.ipc-rating-prompt__rating-container')
-        .find('button')
-        .contains('Rate')
-        .click()
-
+      navMenu.openMenu()
+      navMenu.selectMenuOption('Top Box Office')
+      topBoxOfficePage.rateMovie(2, 5)
     })
 
-    it.only('Rate second item top box office with 5 stars', () => {
-      cy.contains('Menu').click()
-      cy.contains('Top 250 TV Shows').click()
-      cy.contains('Breaking Bad').click()
-      cy.get('[data-testid="photos-title"]').find('a.ipc-title-link-wrapper').click()
-      cy.get('body').then(($body) => {
-        if ($body.text().includes('Danny Trejo')) {
-          cy.contains('a', 'Danny Trejo').click()
-        } else {
-          cy.get('[data-testid="mv-gallery-button"]').click()
-          cy.contains('a', 'Danny Trejo').click()
-        }
-      })
-      cy.get('#media_index_thumbnail_grid>a').eq(1).click()
+    it('Get second image of Danny Trejo in Breaking Bad gallery', () => {
+      navMenu.openMenu()
+      navMenu.selectMenuOption('Top 250 TV Shows')
+      topTVShowsPage.goToShowPage('Breaking Bad')
+      showPage.goToPhotoGallery()
+      showGalleryPage.filterPhotosByName('Danny Trejo')
+      showGalleryPage.selectNthPhoto(2)
     })
 
 
