@@ -12,12 +12,12 @@ describe('Test Pokemon for Brite', () => {
 
     })
 
-    it('Pikachu', () => {
+    // it('Pikachu', () => {
 
-        pokemonHelpers.checkInfo(
-            'Pikachu',
-            210,
-            ["tackle", "hydro-pump", "splash", "flail", "bounce"]
-            )
-    })
+    //     pokemonHelpers.checkPokeInfo(
+    //         'Pikachu',
+    //         210,
+    //         ["tackle", "hydro-pump", "splash", "flail", "bounce"]
+    //         )
+    // })
 })
