@@ -1,7 +1,9 @@
 export class SearchResultsPage {
 
+    PEOPLE_RESULTS = '.find-name-result'
+
     goToActorPage(actor) {
-        cy.get('[data-testid="find-results-section-name"]')
+        cy.get(this.PEOPLE_RESULTS)
             .contains(actor)
             .first()
             .click()
