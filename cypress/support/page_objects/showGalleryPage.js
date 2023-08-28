@@ -12,6 +12,7 @@ export class ShowGalleryPage {
     selectNthPhoto(n) {
         cy.get(this.GRID_PHOTOS).eq(n-1).click()
     }
+
 }
 
 export const showGalleryPage = new ShowGalleryPage()

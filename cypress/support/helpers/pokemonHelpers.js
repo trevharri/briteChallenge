@@ -8,15 +8,21 @@ export class PokemonHelpers {
             })
             .its('body')
             .then(resBody => {
-                const actualName = resBody.forms[0].name
-                expect(actualName).to.eql(name)
+                expect(resBody).to.be.an('object')
 
+                expect(resBody).to.have.property('name')
+                expect(resBody.name).to.eql(name)
+
+                expect(resBody).to.have.property('order')
                 expect(resBody.order).to.eql(order)
 
-                const actualMoves = resBody.moves.map(item => item.move.name)
-                expect(actualMoves).to.eql(moves)
+                expect(resBody).to.have.property('moves')
+                const actualMoves = resBody.moves.map(moveObj => moveObj.move.name)
+                expect(actualMoves.length).to.eql(moves.length)
+                expect(actualMoves).to.have.members(moves)
             })
     }
+
 }
 
 export const pokemonHelpers = new PokemonHelpers()
