@@ -16,6 +16,8 @@ If you do have cypress installed:
 - click the file to execute the test
 
 
+Tentacle test cases can be found at './Tentacles Form.feature'
+
 
 Link to Bug Report:
 https://docs.google.com/document/d/154unru3lrmLIqCT47qyXA0RxFzanMVNwrtTFffsp3iE/edit?usp=sharing
